@@ -1,13 +1,13 @@
 const IMG = {
-  "terrace": "images/terrace.jpg",
-  "building": "images/building-exterior.jpg",
-  "balcony": "images/balcony-entrance.jpg",
-  "livingSect": "images/living-room-sectional.jpg",
-  "bed2": "images/bedroom-2br.jpg",
-  "kitchen2": "images/kitchen-2br.jpg",
-  "kitchen1": "images/kitchen-1br.jpg",
-  "living1a": "images/living-dining-1br.jpg",
-  "living1b": "images/living-room-1br.jpg"
+  "terrace": "terrace.jpg",
+  "building": "building-exterior.jpg",
+  "balcony": "balcony-entrance.jpg",
+  "livingSect": "living-room-sectional.jpg",
+  "bed2": "bedroom-2br.jpg",
+  "kitchen2": "kitchen-2br.jpg",
+  "kitchen1": "kitchen-1br.jpg",
+  "living1a": "living-dining-1br.jpg",
+  "living1b": "living-room-1br.jpg"
 };
 document.getElementById('yr').textContent = new Date().getFullYear();
 const EMAIL = 'malachiteapartmentskla@gmail.com';
