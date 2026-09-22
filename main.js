@@ -1,13 +1,15 @@
 const IMG = {
-  "terrace": "terrace.jpg",
-  "building": "building-exterior.jpg",
-  "balcony": "balcony-entrance.jpg",
-  "livingSect": "living-room-sectional.jpg",
-  "bed2": "bedroom-2br.jpg",
-  "kitchen2": "kitchen-2br.jpg",
-  "kitchen1": "kitchen-1br.jpg",
-  "living1a": "living-dining-1br.jpg",
-  "living1b": "living-room-1br.jpg"
+  "terrace": "images/terrace.jpg",
+  "building": "images/building-exterior.jpg",
+  "balcony": "images/balcony-entrance.jpg",
+  "gal_garden": "images/building-garden.jpg",
+  "gal_path": "images/path-beside-building.jpg",
+  "livingSect": "images/living-room-sectional.jpg",
+  "bed2": "images/bedroom-2br.jpg",
+  "kitchen2": "images/kitchen-2br.jpg",
+  "kitchen1": "images/kitchen-1br.jpg",
+  "living1a": "images/living-dining-1br.jpg",
+  "living1b": "images/living-room-1br.jpg"
 };
 document.getElementById('yr').textContent = new Date().getFullYear();
 const EMAIL = 'malachiteapartmentskla@gmail.com';
@@ -90,8 +92,8 @@ const GALLERY = [
   { key: 'building',   caption: 'The building and garden', alt: 'The yellow and white apartment building seen across the lawn, with flowering bushes in front' },
   { key: 'balcony',    caption: 'Balcony and entrance',    alt: 'Stone-clad columns, a balcony with iron railings and the entrance steps beside the garden' },
   { key: 'terrace',    caption: 'The terrace',             alt: 'Shared terrace with black wrought-iron tables and chairs, overlooking the garden and trees' },
-  { key: 'living1b',   caption: 'Living room',             alt: 'Bright living room with wooden armchairs, a TV, air-conditioning and sheer curtains' },
-  { key: 'livingSect', caption: 'Living room',             alt: 'Living room with a large sectional sofa, a red rug and balcony doors' }
+  { key: 'gal_garden', caption: 'Building and garden',      alt: 'Side of the apartment building with stone-clad pillars, balconies, terrace seating and flowering bushes in the garden' },
+  { key: 'gal_path',   caption: 'Path beside the building',  alt: 'Paved path shaded by trees running alongside the apartment building and its boundary wall' }
 ];
 document.querySelectorAll('#gal button[data-g]').forEach(b => {
   b.addEventListener('click', () => openLB(GALLERY, +b.dataset.g, b));
