@@ -262,6 +262,8 @@ ul,dl,dd{margin:0;padding:0;list-style:none}
 
 /* ---------- footer ---------- */
 .foot{background:var(--green-night);color:#B7CBBF;padding:clamp(48px,6vw,72px) 0 34px;font-size:.96rem}
+.foot .mark{background:url("images/logo.jpeg") center/cover no-repeat;border-radius:50%}
+.foot .mark svg{display:none}
 .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:36px}
 .foot .brand-name{color:#F1F2EA}
 .foot .brand-name small{color:#8FA99B}
