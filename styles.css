@@ -262,7 +262,7 @@ ul,dl,dd{margin:0;padding:0;list-style:none}
 
 /* ---------- footer ---------- */
 .foot{background:var(--green-night);color:#B7CBBF;padding:clamp(48px,6vw,72px) 0 34px;font-size:.96rem}
-.foot .brand:not(.footer-brand){display:none}
+.foot-grid > div:first-child > .brand:not(.footer-brand){display:none !important}
 .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:36px}
 .foot .brand-name{color:#F1F2EA}
 .foot .brand-name small{color:#8FA99B}

@@ -17,6 +17,7 @@ const WA = '256772403696';
 
 /* fill every static image from the shared photo map */
 document.querySelectorAll('img[data-img]').forEach(el => { el.src = IMG[el.dataset.img]; });
+document.querySelectorAll('.foot .brand:not(.footer-brand)').forEach(el => el.remove());
 
 /* ---------- light / dark mode ---------- */
 const root = document.documentElement;
