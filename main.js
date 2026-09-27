@@ -15,7 +15,7 @@ const IMG = {
 document.getElementById('yr').textContent = new Date().getFullYear();
 const EMAIL = 'malachiteapartmentskla@gmail.com';
 const WA = '256772403696';
-const API_BASE_URL = 'http://localhost:3000'; // Replace with the deployed Render URL before publishing.
+const API_BASE_URL = 'https://malachite-apartments2.onrender.com';
 
 /* fill every static image from the shared photo map */
 document.querySelectorAll('img[data-img]').forEach(el => { el.src = IMG[el.dataset.img]; });
