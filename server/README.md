@@ -18,9 +18,12 @@ Edit `server/.env` and set these values:
 PORT=3000
 MONGODB_URI=mongodb+srv://<username>:<password>@<cluster-host>/<database-name>?retryWrites=true&w=majority
 CLIENT_URL=https://m-a-web179.github.io
+RESEND_API_KEY=
+NOTIFICATION_EMAIL=
 ```
 
 `CLIENT_URL` is the site origin, not the repository path. Keep `.env` private; it is excluded from Git.
+Email notifications are optional. Set both `RESEND_API_KEY` and `NOTIFICATION_EMAIL` to enable them; leave either blank to save enquiries without sending email. The current sender, `onboarding@resend.dev`, is for testing with Resend. Verify a domain with Resend and use its approved sender before production email delivery.
 
 ## Run locally
 
@@ -74,7 +77,7 @@ Expected response:
 1. Push this repository to GitHub.
 2. In Render, create a **New Web Service** and connect the repository.
 3. Set **Root Directory** to `server`, **Build Command** to `npm install`, and **Start Command** to `npm start`.
-4. Add environment variables `MONGODB_URI` and `CLIENT_URL` in the Render service settings. Set `CLIENT_URL` to `https://m-a-web179.github.io`. Render supplies `PORT` automatically; it is also fine to set it to `3000` for local use.
+4. Add environment variables `MONGODB_URI` and `CLIENT_URL` in the Render service settings. Set `CLIENT_URL` to `https://m-a-web179.github.io`. To enable email notifications, also set `RESEND_API_KEY` and `NOTIFICATION_EMAIL`. Render supplies `PORT` automatically; it is also fine to set it to `3000` for local use.
 5. Deploy the service and copy its public URL, for example `https://malachite-enquiries.onrender.com`.
 6. Test `https://<your-render-service>.onrender.com/api/health` and confirm the JSON health response.
 
