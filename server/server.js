@@ -1,5 +1,9 @@
 require('dotenv').config();
 
+const { Resend } = require('resend');
+const resend = process.env.RESEND_API_KEY
+  ? new Resend(process.env.RESEND_API_KEY)
+  : null;
 const cors = require('cors');
 const express = require('express');
 const mongoose = require('mongoose');
@@ -81,6 +85,31 @@ app.post('/api/enquiries', async (req, res) => {
       guests,
       message: typeof body.message === 'string' ? body.message.trim() : ''
     });
+
+    if (resend && process.env.NOTIFICATION_EMAIL) {
+      try {
+        await resend.emails.send({
+          from: 'Malachite Apartments <onboarding@resend.dev>',
+          to: [process.env.NOTIFICATION_EMAIL],
+          subject: `New enquiry from ${enquiry.fullName}`,
+          text: [
+            'New Malachite Apartments enquiry',
+            '',
+            `Name: ${enquiry.fullName}`,
+            `Email: ${enquiry.email}`,
+            `Phone: ${enquiry.phone}`,
+            `Apartment type: ${enquiry.apartmentType}`,
+            `Check-in: ${enquiry.checkIn.toISOString().slice(0, 10)}`,
+            `Check-out: ${enquiry.checkOut.toISOString().slice(0, 10)}`,
+            `Guests: ${enquiry.guests}`,
+            `Message: ${enquiry.message || '(No message)'}`,
+            `Enquiry ID: ${enquiry._id}`
+          ].join('\n')
+        });
+      } catch (emailError) {
+        console.error('Enquiry saved, but email notification failed:', emailError.message);
+      }
+    }
 
     res.status(201).json({ success: true, message: 'Enquiry saved successfully.', enquiryId: enquiry.id });
   } catch (error) {
