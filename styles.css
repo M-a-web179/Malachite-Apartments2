@@ -257,6 +257,9 @@ ul,dl,dd{margin:0;padding:0;list-style:none}
 .sent h4{margin:0 0 6px;font:600 1.05rem/1.3 var(--font-body)}
 .sent p{color:var(--muted);font-size:.95rem}
 .sent-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.sent-actions[hidden]{display:none}
+.sent[data-state="success"]{border-color:var(--green)}
+.sent[data-state="error"]{border-color:var(--clay-text)}
 @media (max-width:960px){.contact-grid{grid-template-columns:1fr}}
 @media (max-width:560px){.fields{grid-template-columns:1fr}.actions{grid-template-columns:1fr}}
 

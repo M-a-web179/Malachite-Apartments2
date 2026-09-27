@@ -1,4 +1,5 @@
 const IMG = {
+  "hero_night": "images/hero-night.jpg",
   "terrace": "images/terrace.jpg",
   "building": "images/building-exterior.jpg",
   "balcony": "images/balcony-entrance.jpg",
@@ -14,6 +15,7 @@ const IMG = {
 document.getElementById('yr').textContent = new Date().getFullYear();
 const EMAIL = 'malachiteapartmentskla@gmail.com';
 const WA = '256772403696';
+const API_BASE_URL = 'http://localhost:3000'; // Replace with the deployed Render URL before publishing.
 
 /* fill every static image from the shared photo map */
 document.querySelectorAll('img[data-img]').forEach(el => { el.src = IMG[el.dataset.img]; });
@@ -210,14 +212,58 @@ function lines() {
   ].filter(x => x !== null);
 }
 let lastText = '';
+function showNotice(title, text, state) {
+  const box = $('sent');
+  $('sentH').textContent = title; $('sentP').textContent = text;
+  box.dataset.state = state;
+  box.querySelector('.sent-actions').hidden = true;
+  box.classList.add('show');
+  box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
 function showSent(title, text, linkHref, linkLabel) {
   $('sentH').textContent = title; $('sentP').textContent = text;
   const l = $('sentLink'); l.href = linkHref; l.textContent = linkLabel;
-  const box = $('sent'); box.classList.add('show');
+  const box = $('sent'); delete box.dataset.state;
+  box.querySelector('.sent-actions').hidden = false;
+  box.classList.add('show');
   box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
-form.addEventListener('submit', e => {
+form.addEventListener('submit', async e => {
   e.preventDefault();
+  if (!form.reportValidity() || !validate(false)) return;
+  const submitButton = $('submitEnquiry');
+  submitButton.disabled = true;
+  submitButton.textContent = 'Saving...';
+  $('sent').classList.remove('show');
+  const payload = {
+    apartmentType: roomSel.value,
+    fullName: $('f-name').value.trim(),
+    email: $('f-email').value.trim(),
+    phone: $('f-phone').value.trim(),
+    checkIn: $('f-in').value,
+    checkOut: $('f-out').value,
+    guests: Number($('f-guests').value),
+    message: $('f-msg').value.trim()
+  };
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/enquiries`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || !result.success) throw new Error(result.message || 'The enquiry could not be saved. Please try again.');
+    form.reset();
+    $('f-out').min = iso;
+    showNotice('Enquiry saved', 'Thank you. Your enquiry has been saved, and our team will get back to you soon.', 'success');
+  } catch (err) {
+    showNotice('Could not save enquiry', err.message || 'Please check your connection and try again.', 'error');
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = 'Save enquiry';
+  }
+});
+$('sendMail').addEventListener('click', () => {
   if (!validate(true)) return;
   const subject = 'Booking enquiry: ' + roomSel.value.split(' (')[0] + ' (' + $('f-name').value.trim() + ')';
   const body = 'Hello Malachite Apartments,\n\nI would like to check availability.\n\n' + lines().join('\n') + '\n\nThank you.';

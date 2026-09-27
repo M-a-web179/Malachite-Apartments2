@@ -225,28 +225,29 @@
 
     <div class="form-card">
       <h3>Send an enquiry</h3>
-      <p class="sub">Fill this in and send it by email or WhatsApp. It goes straight to us.</p>
+      <p class="sub">Save your enquiry with the form, or contact us by email or WhatsApp instead.</p>
       <form id="enq" novalidate>
         <div class="fields">
           <div class="field"><label for="f-name">Full name</label><input id="f-name" name="name" type="text" autocomplete="name" required><div class="err" id="e-name" role="alert"></div></div>
-          <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" inputmode="email"><div class="err" id="e-email" role="alert"></div></div>
-          <div class="field"><label for="f-phone">Phone <i>(optional)</i></label><input id="f-phone" name="phone" type="tel" autocomplete="tel"></div>
+          <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required><div class="err" id="e-email" role="alert"></div></div>
+          <div class="field"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" required></div>
           <div class="field"><label for="f-room">Apartment</label>
             <select id="f-room" name="room">
               <option value="1 Bedroom Apartment ($40 per night)">1 Bedroom, $40 per night</option>
               <option value="2 Bedroom Apartment ($60 per night)">2 Bedroom, $60 per night</option>
               <option value="Not sure yet">Not sure yet</option>
             </select></div>
-          <div class="field"><label for="f-in">Check-in</label><input id="f-in" name="in" type="date"></div>
-          <div class="field"><label for="f-out">Check-out</label><input id="f-out" name="out" type="date"><div class="err" id="e-out" role="alert"></div></div>
-          <div class="field"><label for="f-guests">Guests</label><input id="f-guests" name="guests" type="number" min="1" max="12" value="2" inputmode="numeric"></div>
+          <div class="field"><label for="f-in">Check-in</label><input id="f-in" name="in" type="date" required></div>
+          <div class="field"><label for="f-out">Check-out</label><input id="f-out" name="out" type="date" required><div class="err" id="e-out" role="alert"></div></div>
+          <div class="field"><label for="f-guests">Guests</label><input id="f-guests" name="guests" type="number" min="1" max="12" value="2" inputmode="numeric" required></div>
           <div class="field full"><label for="f-msg">Message <i>(optional)</i></label><textarea id="f-msg" name="msg" placeholder="Anything we should know? Arrival time, and any questions."></textarea></div>
         </div>
         <div class="actions">
-          <button class="btn btn-clay" type="submit" id="sendMail">Send by email</button>
-          <button class="btn btn-outline" type="button" id="sendWA">Send on WhatsApp</button>
+          <button class="btn btn-clay" type="submit" id="submitEnquiry">Save enquiry</button>
+          <button class="btn btn-outline" type="button" id="sendMail">Email instead (optional)</button>
+          <button class="btn btn-outline" type="button" id="sendWA">WhatsApp instead (optional)</button>
         </div>
-        <p class="fine">Email opens your email app with everything filled in, addressed to malachiteapartmentskla@gmail.com. Just press send there.</p>
+        <p class="fine">Email and WhatsApp are optional alternatives. Enquiries submitted above are saved securely for our team.</p>
         <div class="sent" id="sent" role="status" aria-live="polite">
           <h4 id="sentH"></h4>
           <p id="sentP"></p>
