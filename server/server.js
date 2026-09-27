@@ -16,9 +16,10 @@ if (!MONGODB_URI || !CLIENT_URL) {
   throw new Error('MONGODB_URI and CLIENT_URL must be set in the environment.');
 }
 
+const CLIENT_ORIGIN = new URL(CLIENT_URL).origin;
 const app = express();
 
-app.use(cors({ origin: CLIENT_URL, methods: ['GET', 'POST'], allowedHeaders: ['Content-Type'] }));
+app.use(cors({ origin: CLIENT_ORIGIN, methods: ['GET', 'POST'], allowedHeaders: ['Content-Type'] }));
 app.use(express.json({ limit: '10kb' }));
 
 app.get('/api/health', (req, res) => {
