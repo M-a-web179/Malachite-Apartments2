@@ -1,5 +1,5 @@
 const IMG = {
-  "hero_night": "images/hero-night.jpg",
+  "hero_entrance": "images/hero-entrance.jpg",
   "terrace": "images/terrace.jpg",
   "building": "images/building-exterior.jpg",
   "balcony": "images/balcony-entrance.jpg",
